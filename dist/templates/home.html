@@ -1,0 +1,8 @@
+<section class="clearfix">
+    <h1>Bloc Chat</h1>
+        <button class="btn-sm btn-success" ng-click="open()">Add A New Chat Room</button>
+        
+         <div ng-repeat="room in rooms">
+             {{ room.$value }}
+         </div>
+</section>
