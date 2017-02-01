@@ -1,8 +1,33 @@
-<section class="clearfix">
-    <h1>Bloc Chat</h1>
-        <button class="btn-sm btn-success" ng-click="open()">Add A New Chat Room</button>
-        
+
+
+<h1>Bloc Chat</h1>
+
+<section class="side-bar container clearfix">
+ 
+         
+        <h4>Open Chat Rooms</h4>
          <div ng-repeat="room in rooms">
-             {{ room.$value }}
+             
+             <a ng-click="setActiveChatRoom(room)">{{ room.name }}</a>
          </div>
+        <div class="side-bar-pad"></div>
+        <button class="btn-sm btn-success" ng-click="open()">Add A New Chat Room</button>
+       
+</section>
+
+
+<section class="chatroom" ng-show="activeRoom.name != null">
+  <h1 class="chat-title">{{ activeRoom.name }}</h1>
+  <div class="buffer-bar"></div>
+  <ul class="messages" ng-repeat="message in messages">
+    <div>
+      <small class="username">{{ message.username }} : </small>{{ message.content }}<small class="pull-right">{{ message.sentAt | date: 'medium'}}</small>
+    </div>
+  </ul>
+
+    <div class="message-field">
+        <input type="text" name="input" placeholder="Type your message here" class="message-box" ng-model="newMessage.content" style="width:400px;">
+        <button class="btn-new-message" type="button" ng-click="sendNewMessages()">Send Your Message</button>
+    </div>
+
 </section>
