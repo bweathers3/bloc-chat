@@ -20,7 +20,9 @@
         $scope.setActiveChatRoom = function(room) {
             $scope.activeRoom = room;
             $scope.roomName = room.name;
+            $scope.currentUser = $cookies.get('blocChatCurrentUser');
             $scope.messages = Message.getByRoomId(room.$id);
+
         }
         
         
@@ -28,6 +30,7 @@
                 $scope.newMessage.roomId = $scope.activeRoom.$id;
                 $scope.newMessage.username = $scope.currentUser;              
                 Message.send($scope.newMessage);
+                $scope.newMessage.content = '';
         }
     
     }
