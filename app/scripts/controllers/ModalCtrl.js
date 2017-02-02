@@ -1,6 +1,7 @@
 (function() {
-    function ModalCtrl($scope, $uibModalInstance){
+    function ModalCtrl($scope, $uibModalInstance, $cookies){
         $scope.text = "";
+        $scope.textNewName = "";
 
         $scope.ok = function(){
             $uibModalInstance.close($scope.text);
@@ -10,10 +11,17 @@
             $uibModalInstance.dismiss('cancel');
         };
         
+        
+        $scope.createUserName = function () {
+            $cookies.put('blocChatCurrentUser', $scope.textNewName);
+            $uibModalInstance.close();
+        }
+        
+        
        
     }
 
     angular
         .module('blocChat')
-        .controller('ModalCtrl', ['$scope', '$uibModalInstance', ModalCtrl])
+        .controller('ModalCtrl', ['$scope', '$uibModalInstance', '$cookies', ModalCtrl])
 })();
